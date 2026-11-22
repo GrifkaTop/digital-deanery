@@ -1,0 +1,20 @@
+.interface-prototype {
+  --p-homework-ink: #224bad;
+  --p-control-work-ink: #6334a0;
+  --p-lab-ink: #09606a;
+  --p-request-ink: #744a28;
+}
+.interface-prototype[data-mode=dark] {
+  --p-homework-ink: #a6c1ff;
+  --p-control-work-ink: #d4b7ff;
+  --p-lab-ink: #88d7dd;
+  --p-request-ink: #f4c9a4;
+}
+.interface-prototype [data-academic-category] {
+  --p-category-fill: color-mix(in srgb, var(--p-category-ink) 12%, var(--p-card));
+}
+.interface-prototype [data-academic-category=homework] { --p-category-ink: var(--p-homework-ink); }
+.interface-prototype [data-academic-category=control] { --p-category-ink: var(--p-control-work-ink); }
+.interface-prototype [data-academic-category=lab] { --p-category-ink: var(--p-lab-ink); }
+.interface-prototype [data-academic-category=schedule] { --p-category-ink: var(--p-muted); }
+.interface-prototype [data-academic-category=request] { --p-category-ink: var(--p-request-ink); }

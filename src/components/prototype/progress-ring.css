@@ -1,0 +1,29 @@
+.p-progress-ring {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  inline-size: var(--p-ring-size, 54px);
+  aspect-ratio: 1;
+  color: var(--p-text);
+}
+.p-progress-ring > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.p-progress-ring-track { stroke: var(--p-line); }
+.p-progress-ring-arc { stroke: var(--p-accent); }
+.p-progress-ring-value {
+  display: grid;
+  justify-items: center;
+  font-family: var(--p-heading-font);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+.p-progress-ring-earned {
+  font-size: calc(var(--p-ring-size, 54px) / 3);
+  font-weight: 750;
+  letter-spacing: -.025em;
+}
+.p-progress-ring-maximum {
+  color: var(--p-muted);
+  font-size: max(9px, calc(var(--p-ring-size, 54px) / 6));
+}

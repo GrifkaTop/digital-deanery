@@ -1,0 +1,237 @@
+.ss-page { color: var(--p-text); min-width: 0; overflow-wrap: anywhere; container-type: inline-size; }
+.ss-page :is(button, input, textarea) { font: inherit; }
+.ss-header { display: flex; justify-content: space-between; align-items: baseline; gap: 6px 20px; flex-wrap: wrap; }
+.ss-header h1 { margin: 0; }
+.ss-demo { color: var(--p-muted); font-size: 13px; line-height: 1.45; }
+.ss-services-heading { align-items: center; }
+.ss-services-heading .ss-demo {
+  padding: 4px 10px;
+  border: 1px solid color-mix(in srgb, var(--p-line) 55%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--p-raised) 50%, transparent);
+  color: var(--p-muted);
+  font-size: 12px;
+}
+.ss-muted, .ss-empty p, .ss-service p, .ss-sport-row p, .ss-reservation p { color: var(--p-muted); line-height: 1.5; }
+
+.ss-tabs { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px; width: fit-content; max-width: 100%; margin: 16px 0 20px; padding: 4px; border: 1px solid color-mix(in srgb, var(--p-line) 60%, transparent); border-radius: 12px; background: color-mix(in srgb, var(--p-raised) 45%, transparent); }
+.interface-prototype .ss-tabs :is(button, a) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--p-muted);
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 140ms ease, background-color 140ms ease;
+}
+.interface-prototype .ss-tabs :is(button, a):hover { color: var(--p-text); background: var(--p-hover); filter: none; text-decoration: none; }
+.interface-prototype .ss-tabs :is(button, a)[aria-current=page] { color: var(--p-primary-ink); background: var(--p-primary-fill); font-weight: 750; text-decoration: none; }
+.ss-tabs span { margin-left: 6px; color: var(--p-accent); background: var(--p-soft); padding: 2px 6px; border-radius: 999px; font-size: 11px; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.interface-prototype .ss-tabs [aria-current=page] span { color: var(--p-primary-fill); background: var(--p-primary-ink); }
+.ss-tools { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.ss-filter { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.interface-prototype .ss-filter button {
+  min-width: 48px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid color-mix(in srgb, var(--p-line) 50%, transparent);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--p-muted);
+  font-size: 12px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: color 140ms ease, background-color 140ms ease;
+}
+.interface-prototype .ss-filter button:hover { color: var(--p-text); background: var(--p-hover); filter: none; text-decoration: none; }
+.interface-prototype .ss-filter button[aria-pressed=true] { border-color: transparent; color: var(--p-primary-ink); background: var(--p-primary-fill); font-weight: 750; }
+.ss-search { display: flex; flex: 0 1 256px; align-items: center; gap: 8px; width: 100%; min-width: min(100%, 200px); max-width: 256px; padding-inline: 10px; }
+.ss-search, .ss-fields :is(input, textarea) {
+  border: 1px solid var(--p-control, var(--p-line));
+  border-radius: var(--p-control-radius);
+  background: var(--p-raised, var(--p-hover));
+  color: var(--p-text);
+}
+.ss-search svg { color: var(--p-muted); }
+.ss-search input { width: 100%; min-width: 0; min-height: 38px; padding: 6px 0; border: 0; background: transparent; color: inherit; }
+.ss-page :is(input, textarea)::placeholder { color: var(--p-muted); opacity: 1; }
+.ss-search:has(input:focus-visible) { outline: 3px solid var(--p-focus, var(--p-accent)); outline-offset: 3px; }
+.interface-prototype .ss-search input:focus-visible { outline: none; }
+
+.ss-panel, .ss-service-list, .ss-sport-card {
+  background: var(--p-card);
+  border: 1px solid var(--p-line);
+  border-radius: var(--p-radius);
+}
+.ss-service, .ss-sport-row { padding: clamp(12px, 2cqi, 20px); }
+.ss-service + .ss-service, .ss-sport-row + .ss-sport-row { border-top: 1px solid var(--p-line); }
+.ss-service, .ss-sport-row { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: start; gap: 6px 12px; }
+.ss-service > :is(button, a), .ss-sport-row > button { align-self: center; }
+.ss-service-icon { display: grid; place-items: center; width: 40px; height: 40px; color: var(--p-accent); background: var(--p-soft); border-radius: 8px; }
+.ss-service h2, .ss-sport-row h3 { margin: 0 0 3px; font-size: 17px; line-height: 1.35; font-weight: 750; }
+.ss-category { display: inline-block; padding: 3px 6px; border-radius: 5px; background: var(--p-soft); color: var(--p-accent); font-size: 12px; font-weight: 750; }
+.ss-service p, .ss-sport-row p { margin: 3px 0 0; font-size: 14px; }
+.interface-prototype .ss-page .ss-open {
+  display: inline-flex;
+  justify-content: flex-start;
+  width: max-content;
+  max-width: 100%;
+  white-space: nowrap;
+  min-height: 48px;
+  gap: 8px;
+  background: transparent;
+  border: 0;
+  color: var(--p-accent);
+  font-weight: 750;
+  padding-inline: 0;
+}
+.interface-prototype .ss-page .ss-open:hover { filter: none; text-decoration: underline; text-underline-offset: 4px; }
+.interface-prototype .ss-page :is(.ss-primary, .ss-secondary) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 9px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--p-control-radius);
+  font-weight: 750;
+  text-decoration: none;
+}
+.interface-prototype .ss-page .ss-primary { background: var(--p-primary-fill, var(--p-accent)); color: var(--p-primary-ink, var(--on-primary)); }
+.interface-prototype .ss-page .ss-secondary { background: transparent; color: var(--p-text); border-color: var(--p-control, var(--p-line)); }
+.interface-prototype .ss-page .ss-secondary:hover { background: var(--p-raised, var(--p-hover)); filter: none; }
+.interface-prototype .ss-page .ss-primary:disabled { opacity: 1; background: var(--p-raised, var(--p-hover)); color: var(--p-muted); border-color: var(--p-line); }
+.ss-empty { padding: clamp(16px, 4cqi, 34px); }
+.ss-empty h2 { font-size: 18px; }
+.ss-empty p { margin: 4px 0 12px; }
+
+.ss-form { width: min(100%, 720px); padding: clamp(16px, 3cqi, 28px); }
+.ss-form-toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; gap: 16px; padding-block-end: 16px; margin-block-end: 20px; border-block-end: 1px solid color-mix(in srgb, var(--p-line) 50%, transparent); }
+.interface-prototype .ss-page .ss-back { display: inline-flex; flex: none; flex-direction: row; align-items: center; gap: 6px; min-height: 48px; max-width: 100%; white-space: nowrap; color: var(--p-accent); text-decoration: none; }
+.interface-prototype .ss-page .ss-back:hover { text-decoration: none; background: var(--p-hover); filter: none; }
+.ss-page .ss-back svg { display: inline-block; flex: none; width: 18px; height: 18px; }
+.ss-step { flex: none; padding: 4px 10px; border: 1px solid color-mix(in srgb, var(--p-line) 50%, transparent); border-radius: 999px; background: color-mix(in srgb, var(--p-raised) 60%, transparent); color: var(--p-muted); font-size: 12px; font-weight: 650; white-space: nowrap; }
+.ss-form h2 { margin: 0 0 6px; font-size: clamp(21px, 3.4cqi, 28px); line-height: 1.2; letter-spacing: -.025em; }
+.ss-fields { display: grid; gap: 14px; margin-top: 12px; }
+.ss-fields:has(.request-date-field) > :not(.request-date-field) { grid-column: 1 / -1; }
+.request-service-heading { display: grid; gap: 3px; margin-block-end: 2px; }
+.request-service-heading h2, .request-service-heading p { margin: 0; }
+.ss-fields label { display: block; font-size: 14px; font-weight: 700; }
+.ss-fields input, .ss-fields textarea { display: block; width: 100%; min-height: 48px; margin-top: 5px; padding: 10px 12px; font-size: 16px; }
+.ss-fields textarea { min-height: calc(4lh + 22px); }
+.ss-fields [aria-invalid=true] { border-color: var(--p-danger); }
+.ss-optional { color: var(--p-muted); font-weight: 500; }
+.ss-error { color: var(--p-danger); margin: -7px 0 0; font-size: 14px; }
+.ss-fields .ss-primary { justify-self: start; }
+.ss-review { margin: 18px 0; border-block: 1px solid var(--p-line); }
+.ss-review div { display: grid; grid-template-columns: minmax(75px, 1fr) minmax(0, 2.5fr); gap: 8px 12px; padding: 11px 0; }
+.ss-review div + div { border-top: 1px solid var(--p-line); }
+.ss-review dt { color: var(--p-muted); font-size: 13px; }
+.ss-review dd { margin: 0; }
+.ss-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.ss-success p { max-width: 55ch; color: var(--p-muted); line-height: 1.6; margin: 8px 0 14px; }
+.ss-success-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+  background: var(--p-success-surface);
+  color: var(--p-success);
+  border-radius: 9px;
+}
+.ss-sport-overview { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; gap: 12px; margin-bottom: 12px; }
+.ss-sport-overview-main { display: grid; min-width: 0; gap: 12px; }
+.ss-sport-card { --ss-sport-padding: clamp(14px, 3cqi, 24px); min-width: 0; }
+.ss-page > .ss-sport-card + .ss-sport-card { margin-block-start: 12px; }
+.ss-passport { background: var(--p-soft); border-color: color-mix(in srgb, var(--p-accent) 24%, var(--p-line)); }
+.ss-page .ss-sport-heading { font-size: clamp(18px, 2.8cqi, 23px); }
+.ss-page .ss-sport-heading > .pf-toggle { padding: 10px var(--ss-sport-padding); }
+.ss-sport-heading .pf-title > svg { color: var(--p-accent); }
+.ss-sport-body { padding-inline: var(--ss-sport-padding); padding-block-end: var(--ss-sport-padding); }
+.ss-expiry { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 13px; font-weight: 750; }
+.ss-expiry[data-validity=valid] { color: var(--p-success); background: var(--p-success-surface); }
+.ss-expiry[data-validity=expiring] { color: var(--p-warning); background: var(--p-warning-surface); }
+.ss-expiry[data-validity=expired] { color: var(--p-danger); background: color-mix(in srgb, var(--p-danger) 12%, var(--p-card)); }
+.ss-passport-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 138px), 1fr)); gap: 8px 14px; margin: 12px 0 0; }
+.ss-passport-facts > div { min-width: 0; padding-block-start: 8px; border-block-start: 1px solid var(--p-line); }
+.ss-passport-facts dt, .ss-validity-inclusive, .ss-passport-note, .ss-progress small { color: var(--p-muted); font-size: 13px; }
+.ss-passport-facts dd { margin: 3px 0 0; font-size: 18px; font-weight: 750; line-height: 1.3; }
+.ss-passport-facts .ss-validity-inclusive { font-size: 13px; font-weight: 550; }
+.ss-passport-note { margin: 12px 0 0; }
+.ss-passport-note a { display: inline-flex; align-items: center; gap: 6px; min-height: 48px; color: var(--p-accent); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.ss-passport-note svg { flex: none; }
+.ss-progress small { display: block; margin-top: 12px; }
+.ss-sport-semester { display: grid; gap: 5px; margin-bottom: 15px; color: var(--p-muted); font-size: 13px; font-weight: 750; }
+.interface-prototype .ss-sport-semester select {
+  width: 100%; min-width: 0; min-height: 48px; padding: 7px 10px;
+  border: 1px solid var(--p-control); border-radius: var(--p-control-radius);
+  background: var(--p-raised); color: var(--p-text); font-family: inherit; font-size: 16px;
+}
+.ss-progress-layout { display: flex; align-items: center; gap: clamp(12px, 3cqi, 20px); }
+.ss-progress-summary { min-width: 0; }
+.ss-progress-layout p { margin: 0 0 4px; color: var(--p-muted); font-size: 14px; }
+.ss-progress-layout p strong { color: var(--p-text); }
+.ss-progress-layout .ss-pass-outcome { color: var(--p-warning); font-weight: 750; }
+.ss-progress-layout .ss-pass-outcome[data-passed=true] { color: var(--p-success); }
+.ss-pass-criteria { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 14px 0 0; }
+.ss-pass-criteria > div { min-width: 0; padding-block-start: 8px; border-block-start: 1px solid var(--p-line); }
+.ss-pass-criteria dt, .ss-pass-note { color: var(--p-muted); font-size: 13px; }
+.ss-pass-criteria dd { margin: 2px 0 0; }
+.ss-pass-criteria dd strong { font-size: 17px; font-variant-numeric: tabular-nums; }
+.ss-pass-note[data-met=true] { color: var(--p-success); }
+.ss-ring { --p-ring-size: clamp(84px, 18cqi, 106px); }
+.ss-norms-period, .ss-norms-empty { margin: 0; color: var(--p-muted); font-size: 14px; line-height: 1.5; }
+.ss-norm-list { margin: 12px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--p-line); }
+.ss-norm-list > li { padding: 14px 0; }
+.ss-norm-list > li + li { border-top: 1px solid var(--p-line); }
+.ss-norm-list > li:last-child { padding-bottom: 0; }
+.ss-norm-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 6px 12px; }
+.ss-norm-heading h3 { margin: 0; font-size: 16px; line-height: 1.4; }
+.ss-norm-status { padding: 3px 8px; border-radius: 5px; background: var(--p-raised); color: var(--p-muted); font-size: 13px; font-weight: 750; }
+.ss-norm-status[data-status=passed] { background: var(--p-success-surface); color: var(--p-success); }
+.ss-norm-status[data-status=failed] { background: var(--p-warning-surface); color: var(--p-warning); }
+.ss-norm-results { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 10px 0 0; }
+.ss-norm-results dt { color: var(--p-muted); font-size: 13px; }
+.ss-norm-results dd { margin: 2px 0 0; font-weight: 750; font-variant-numeric: tabular-nums; }
+.ss-norm-trend { margin: 8px 0 0; color: var(--p-muted); font-size: 13px; }
+.ss-norm-trend[data-trend=better] { color: var(--p-success); }
+.ss-reservations-note, .ss-reservations-empty, .ss-reservation p { margin: 0; color: var(--p-muted); font-size: 14px; }
+.ss-reservations-count { flex: none; padding: 3px 8px; border-radius: 4px; background: var(--p-soft); color: var(--p-accent); font-weight: 750; }
+.ss-reservations-empty, .ss-reservation-list { margin-top: 12px; }
+.ss-reservation-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 255px), 1fr)); gap: 12px; }
+.ss-reservation { display: grid; grid-template-rows: auto 1fr auto; align-items: start; gap: 12px; min-width: 0; padding: 14px; border: 1px solid var(--p-line); border-radius: var(--p-radius); background: var(--p-raised); }
+.ss-reservation header { display: grid; grid-template-columns: 40px minmax(0, 1fr); align-items: center; gap: 10px; }
+.ss-reservation h3 { font-size: 17px; line-height: 1.3; margin: 0 0 3px; }
+.ss-reservation header p { font-variant-numeric: tabular-nums; }
+.ss-reservation dl { display: grid; gap: 7px; margin: 0; }
+.ss-reservation dl > div { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2px 10px; min-width: 0; }
+.ss-reservation dt { display: flex; align-items: center; gap: 5px; color: var(--p-muted); font-size: 13px; }
+.ss-reservation dt svg { color: var(--p-accent); flex: none; }
+.ss-reservation dd { margin: 0; font-weight: 700; }
+.ss-booking .ss-tabs { margin-block-end: 0; }
+.ss-sport-row { padding-inline: 0; }
+.ss-sport-row:last-child { padding-block-end: 0; }
+.ss-limit { padding: 10px 12px; background: var(--p-soft); border-radius: 8px; color: var(--p-text); font-size: 14px; line-height: 1.5; }
+.ss-availability, .ss-full, .ss-booked { display: inline-block; margin: 7px 10px 0 0; color: var(--p-success); font-size: 13px; font-weight: 700; }
+.ss-full { color: var(--p-warning); }
+.ss-booked { color: var(--p-accent); }
+.ss-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@container (min-width: 651px) {
+  .ss-sport-overview { grid-template-columns: minmax(0, 1.16fr) minmax(0, 1fr); }
+}
+@container (max-width: 525px) {
+  .ss-search { flex-basis: 100%; max-width: none; }
+  .ss-service, .ss-sport-row { grid-template-columns: 40px minmax(0, 1fr); }
+  .ss-service > :is(button, a), .ss-sport-row > button { grid-column: 2; justify-self: start; }
+  .ss-sport-row > button { margin-top: 3px; }
+}

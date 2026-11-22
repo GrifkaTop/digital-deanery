@@ -1,0 +1,115 @@
+services:
+  db:
+    image: postgres:16.13-bookworm@sha256:472efd9a66f2b2f1a5aeb18b28de74332e6ef88c2b93a1a5d812fb6db67a5f60
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: deanery
+      POSTGRES_USER: deanery_owner
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Generate .env}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:?Generate .env}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/init-db.sh:/docker-entrypoint-initdb.d/10-app-role.sh:ro
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U deanery_owner -d deanery"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  migrate:
+    build:
+      context: .
+      target: migrate
+    environment:
+      MIGRATION_DATABASE_URL: ${MIGRATION_DATABASE_URL:?Generate .env}
+    depends_on:
+      db:
+        condition: service_healthy
+  seed:
+    profiles: [tools]
+    build:
+      context: .
+      target: migrate
+    command: [npm, run, db:seed]
+    environment:
+      MIGRATION_DATABASE_URL: ${MIGRATION_DATABASE_URL:?Generate .env}
+      DEMO_A_LOGIN: ${DEMO_A_LOGIN:-}
+      DEMO_A_PASSWORD: ${DEMO_A_PASSWORD:-}
+      DEMO_B_LOGIN: ${DEMO_B_LOGIN:-}
+      DEMO_B_PASSWORD: ${DEMO_B_PASSWORD:-}
+      DEMO_MOBILE_PASSWORD: ${DEMO_MOBILE_PASSWORD:-}
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+  app:
+    build:
+      context: .
+      target: runner
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?Generate .env}
+      DEMO_ACADEMIC_NOW: ${DEMO_ACADEMIC_NOW:-}
+      ENABLE_DEMO_LOGIN: ${ENABLE_DEMO_LOGIN:-false}
+      DEMO_MOBILE_LOGIN: ${DEMO_MOBILE_LOGIN:-}
+      AUTH_SECRET: ${AUTH_SECRET:?Run node scripts/init-auth-env.mjs}
+      APP_ORIGIN: ${APP_ORIGIN:-https://localhost}
+      LOCAL_APP_ORIGIN: ${LOCAL_APP_ORIGIN:-}
+      ASSISTANT_DOCUMENT_ROOT: /documents
+      ASSISTANT_QWEN_BASE_URL: ${ASSISTANT_QWEN_BASE_URL:-}
+      ASSISTANT_QWEN_MODEL: ${ASSISTANT_QWEN_MODEL:-}
+      ASSISTANT_QWEN_API_KEY: ${ASSISTANT_QWEN_API_KEY:-}
+    volumes:
+      - ${ASSISTANT_DOCUMENTS_DIR:-./documents}/versions:/documents/versions:ro
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  document-import:
+    profiles: [tools]
+    build:
+      context: .
+      target: document-import
+    environment:
+      ASSISTANT_DOCUMENT_ROOT: /documents
+      MIGRATION_DATABASE_URL: ${MIGRATION_DATABASE_URL:?Generate .env}
+    volumes:
+      - ${ASSISTANT_DOCUMENTS_DIR:-./documents}:/documents
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+  caddy:
+    image: caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+    restart: unless-stopped
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:-localhost}
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:80:80"
+      - "${BIND_ADDRESS:-127.0.0.1}:443:443"
+    volumes:
+      - ./infra/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      app:
+        condition: service_healthy
+  local-redirect:
+    profiles: [local-dual]
+    image: caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+    restart: unless-stopped
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:-localhost}
+    ports:
+      - "127.0.0.1:80:80"
+      - "127.0.0.1:443:443"
+    volumes:
+      - ./infra/Caddyfile.local-redirect:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - local_caddy_config:/config
+volumes:
+  postgres_data:
+  caddy_data:
+  caddy_config:
+  local_caddy_config:

@@ -1,0 +1,67 @@
+.pf-heading {
+  min-width: 0;
+  margin: 0 0 8px;
+  font: 780 clamp(20px, 2.2vw, 28px)/1.25 var(--p-heading-font);
+  letter-spacing: -.026em;
+}
+.pf-section[data-fold-open=false] > .pf-heading { margin-bottom: 0; }
+.pf-heading .pf-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 48px;
+  gap: 8px;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--p-text);
+  text-align: start;
+  font: inherit;
+  letter-spacing: inherit;
+}
+.pf-heading .pf-toggle:hover { color: var(--p-accent); filter: none; }
+.pf-title { min-width: 0; display: flex; align-items: center; gap: 8px; overflow-wrap: anywhere; }
+.pf-trailing { display: flex; align-items: center; justify-content: flex-end; gap: clamp(5px, 1.4vw, 12px); font-size: 13px; letter-spacing: 0; }
+.pf-chevron { flex: none; color: var(--p-muted); }
+.pf-toggle[aria-expanded=false] .pf-chevron { transform: rotate(-90deg); }
+.pf-reveal {
+  --pf-rows: 1fr;
+  --pf-overflow: visible;
+  --pf-visibility: visible;
+  --pf-interactivity: auto;
+  display: grid;
+  grid-template-rows: var(--pf-rows);
+  min-width: 0;
+}
+.pf-reveal-inner {
+  min-width: 0;
+  min-height: 0;
+  overflow: var(--pf-overflow);
+  visibility: var(--pf-visibility);
+  interactivity: var(--pf-interactivity);
+}
+.pf-reveal[data-fold-closed] {
+  --pf-rows: 0fr;
+  --pf-overflow: clip;
+  --pf-visibility: hidden;
+  --pf-interactivity: inert;
+}
+.pf-desktop-title { display: none; }
+@media (min-width: 1024px) {
+  .pf-section[data-desktop-expanded] > .pf-heading { margin-bottom: 8px; }
+  .pf-section[data-desktop-expanded] > .pf-heading .pf-toggle { display: none; }
+  .pf-section[data-desktop-expanded] > .pf-heading .pf-desktop-title { display: inline-flex; align-items: center; gap: 8px; }
+  .pf-reveal[data-desktop-expanded] {
+    --pf-rows: 1fr;
+    --pf-overflow: visible;
+    --pf-visibility: visible;
+    --pf-interactivity: auto;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pf-chevron { transition: transform .16s ease; }
+  .pf-reveal { transition: grid-template-rows .26s cubic-bezier(.25,.65,.3,1); }
+  .pf-reveal-inner { transition: overflow .26s step-end allow-discrete; }
+  .pf-reveal[data-fold-closed] > .pf-reveal-inner { transition: visibility .26s step-end; }
+}

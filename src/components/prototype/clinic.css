@@ -1,0 +1,38 @@
+.clinic-passport h2, .clinic-afk h2 { margin-block-start: 0; }
+.clinic-passport p { margin-block: .5rem; }
+.clinic-passport-state, .clinic-afk-state { font-weight: 750; }
+.clinic-passport-state[data-current="true"] { color: var(--p-success); }
+.clinic-passport-state[data-current="false"] { color: var(--p-warning); }
+.campus-page .clinic-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  gap: .5rem;
+  font-weight: 750;
+}
+.clinic-link svg { flex: none; }
+.clinic-file {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 48px;
+  margin-block-start: .45rem;
+  color: var(--p-text);
+  font: inherit;
+}
+.clinic-file::file-selector-button {
+  min-height: 48px;
+  margin-inline-end: .55rem;
+  padding-inline: .7rem;
+  border: 1px solid var(--p-control);
+  border-radius: 8px;
+  background: var(--p-card);
+  color: var(--p-text);
+  font: inherit;
+}
+.clinic-file::file-selector-button:hover { background: var(--p-hover); }
+.clinic-error { color: var(--p-danger); }
+.clinic-documents ul { margin-block: .35rem .8rem; padding-inline-start: 1.2rem; }
+.clinic-documents li + li { margin-block-start: .4rem; }
+.clinic-source-links { display: flex; flex-wrap: wrap; gap: 0 .85rem; }
+.clinic-source-links a { display: inline-flex; align-items: center; min-height: 48px; }

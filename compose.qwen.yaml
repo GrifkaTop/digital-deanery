@@ -1,0 +1,45 @@
+# Enable only on the restricted stand with synthetic questions.
+services:
+  app:
+    environment:
+      ASSISTANT_QWEN_SOCKET: /run/qwen/bridge.sock
+      ASSISTANT_QWEN_MODEL: &qwen_model ${ASSISTANT_QWEN_MODEL:-qwen3.5:27b-q4_K_M}
+      ASSISTANT_QWEN_BASE_URL: ""
+      ASSISTANT_QWEN_API_KEY: ""
+    volumes:
+      - qwen_socket:/run/qwen:ro
+  qwen-bridge:
+    build:
+      context: .
+      target: qwen-bridge
+    restart: unless-stopped
+    init: true
+    environment:
+      ASSISTANT_QWEN_MODEL: *qwen_model
+      TESLA_QWEN_SSH_HOST: ${TESLA_QWEN_SSH_HOST:-95.165.82.60}
+      TESLA_QWEN_SSH_PORT: ${TESLA_QWEN_SSH_PORT:-8022}
+      TESLA_QWEN_SSH_USER: ${TESLA_QWEN_SSH_USER:-modelonly}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - qwen_egress
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - qwen_socket:/run/qwen
+      - type: bind
+        source: ${TESLA_QWEN_SSH_KEY:?Set TESLA_QWEN_SSH_KEY}
+        target: /run/tesla/identity
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TESLA_QWEN_KNOWN_HOSTS:?Set TESLA_QWEN_KNOWN_HOSTS}
+        target: /run/tesla/known_hosts
+        read_only: true
+        bind:
+          create_host_path: false
+networks:
+  qwen_egress:
+volumes:
+  qwen_socket:

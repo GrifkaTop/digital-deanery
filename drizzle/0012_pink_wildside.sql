@@ -1,0 +1,6 @@
+ALTER TYPE "public"."request_kind" ADD VALUE 'scholarship_certificate';--> statement-breakpoint
+ALTER TYPE "public"."request_kind" ADD VALUE 'individual_schedule';--> statement-breakpoint
+ALTER TYPE "public"."request_kind" ADD VALUE 'dormitory';--> statement-breakpoint
+ALTER TYPE "public"."request_kind" ADD VALUE 'campus_pass';--> statement-breakpoint
+ALTER TABLE "student_assignment_results" DROP CONSTRAINT "assignment_result_times";--> statement-breakpoint
+ALTER TABLE "student_assignment_results" ADD CONSTRAINT "assignment_result_times" CHECK (("student_assignment_results"."stage" = 'issued' AND "student_assignment_results"."completed_at" IS NULL AND "student_assignment_results"."defended_at" IS NULL) OR ("student_assignment_results"."stage" = 'completed' AND "student_assignment_results"."completed_at" IS NOT NULL AND "student_assignment_results"."defended_at" IS NULL) OR ("student_assignment_results"."stage" = 'defended' AND "student_assignment_results"."completed_at" IS NOT NULL AND "student_assignment_results"."defended_at" IS NOT NULL AND "student_assignment_results"."defended_at" >= "student_assignment_results"."completed_at"));

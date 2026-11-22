@@ -1,0 +1,38 @@
+.vuc-application { display: grid; gap: 10px; }
+.vuc-application h2, .vuc-application h3, .vuc-application p { margin-block: 0; }
+.interface-prototype .vuc-application .campus-primary { justify-self: start; max-width: 100%; min-height: 48px; }
+.interface-prototype .vuc-application .campus-primary:disabled { opacity: .58; cursor: not-allowed; }
+.vuc-status { font-size: 1.0625rem; color: var(--p-text); overflow-wrap: anywhere; }
+.vuc-slots { min-width: 0; padding: 0; margin: 0 0 12px; border: 0; }
+.vuc-slots legend { margin-bottom: 5px; font-weight: 700; }
+.vuc-slots label {
+  display: flex; gap: 10px; align-items: center; min-height: 48px; padding: 9px 10px; margin-block: 5px;
+  border: 1px solid var(--p-line); border-radius: 12px; overflow-wrap: anywhere; cursor: pointer;
+}
+.vuc-slots label:has(input:checked) { border-color: var(--p-accent); background: var(--p-soft); }
+.vuc-slots label:has(input:focus-visible) { outline: 2px solid var(--p-accent); outline-offset: 2px; }
+.vuc-slots input { flex: none; width: 18px; height: 18px; accent-color: var(--p-accent); }
+.vuc-slots small { display: block; margin-top: 3px; color: var(--p-muted); }
+.vuc-appointment {
+  display: flex; gap: 10px; align-items: flex-start; min-width: 0; padding: 12px;
+  border-radius: 12px; background: var(--p-soft); color: var(--p-text); overflow-wrap: anywhere;
+}
+.vuc-appointment svg { flex: none; color: var(--p-accent); }
+.vuc-appointment p { margin-top: 4px; color: var(--p-muted); }
+.vuc-error { color: var(--p-danger); }
+.vuc-exercises, .vuc-schedule { list-style: none; padding: 0; margin: 12px 0; }
+.vuc-exercises li {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; padding-block: 8px;
+  border-top: 1px solid var(--p-line);
+}
+.vuc-exercises strong { font-variant-numeric: tabular-nums; }
+.vuc-scores { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 125px), 1fr)); gap: 7px; margin: 12px 0; }
+.vuc-scores div { min-width: 0; padding: 8px 10px; border-radius: 10px; background: var(--p-soft); }
+.vuc-scores dt { color: var(--p-muted); font-size: .875rem; overflow-wrap: anywhere; }
+.vuc-scores dd { margin: 3px 0 0; color: var(--p-text); font-size: 1.25rem; font-weight: 750; font-variant-numeric: tabular-nums; }
+.vuc-scores dd span { font-size: .8125rem; font-weight: 500; color: var(--p-muted); white-space: nowrap; }
+.vuc-schedule li { border-top: 1px solid var(--p-line); padding: 10px 0; }
+.vuc-schedule h3, .vuc-schedule p { margin: 0 0 4px; }
+.vuc-schedule p { color: var(--p-muted); }
+.vuc-requirements { padding-left: 1.25rem; }
+.vuc-requirements li + li { margin-top: 5px; }

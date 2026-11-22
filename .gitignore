@@ -1,0 +1,17 @@
+node_modules/
+.next/
+.env*
+!.env.example
+*.tsbuildinfo
+coverage/
+playwright-report/
+test-results/
+tmp/
+
+dist/
+*.db
+*.sqlite
+*.dump
+*.tar.gpg
+.deanery-backup.*/
+.DS_Store

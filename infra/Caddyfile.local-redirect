@@ -1,0 +1,8 @@
+localhost {
+ request_body {
+  max_size 16384
+ }
+ reverse_proxy app:3000 {
+  header_up X-Real-IP {remote_host}
+ }
+}

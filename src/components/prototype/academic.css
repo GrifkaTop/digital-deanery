@@ -1,0 +1,18 @@
+.ac-root {
+  position: relative; min-width: 0; color: var(--p-text); font-size: 14px;
+}
+.ac-root :is(button,select) { font: inherit; color: inherit; }
+.ac-root button { cursor: pointer; }
+.ac-root :is(button,a,select):focus-visible { outline: 3px solid var(--p-focus); outline-offset: 3px; }
+.ac-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 18px; margin-bottom: 18px; }
+.interface-prototype .ac-heading h1 {
+  margin: 0;
+  font: 720 var(--p-heading-size)/1.12 var(--p-heading-font);
+  letter-spacing: -.045em;
+}
+.ac-semester { display: flex; align-items: center; gap: 8px; color: var(--p-muted); font-size: 12px; }
+
+@media (max-width: 700px) {
+  .ac-semester { display: none; }
+  .ac-heading { margin-bottom: 10px; }
+}

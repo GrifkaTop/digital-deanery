@@ -1,0 +1,12 @@
+https://localhost {
+  tls internal
+  reverse_proxy app:3000 {
+    header_up X-Real-IP {remote_host}
+  }
+}
+https://localhost:444 {
+  tls internal
+  reverse_proxy catalog:3000 {
+    header_up X-Real-IP {remote_host}
+  }
+}

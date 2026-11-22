@@ -1,0 +1,19 @@
+services:
+  qwen-bridge:
+    image: ${REQUESTS_TEST_IMAGE_PREFIX:-mgimo-vibecode}-qwen-bridge:latest
+  catalog:
+    extends:
+      file: compose.yaml
+      service: app
+    image: ${REQUESTS_TEST_IMAGE_PREFIX:-mgimo-vibecode}-app:latest
+    environment:
+      APP_ORIGIN: https://localhost:8444
+      ASSISTANT_QWEN_BASE_URL: ""
+      ASSISTANT_QWEN_MODEL: ""
+      ASSISTANT_QWEN_API_KEY: ""
+  caddy:
+    ports: !override
+      - "127.0.0.1:8443:443"
+      - "127.0.0.1:8444:444"
+    volumes:
+      - ./tests/fixtures/guard-evaluation.Caddyfile:/etc/caddy/Caddyfile:ro

@@ -1,0 +1,185 @@
+.ap-root {
+  min-width: 0;
+  color: var(--p-text);
+  container-type: inline-size;
+}
+
+.ap-heading { display: grid; gap: 16px; margin-block-end: 18px; }
+.ap-heading h1 {
+  margin: 0;
+  font: 720 var(--p-heading-size)/1.12 var(--p-heading-font);
+  letter-spacing: -.045em;
+}
+.ap-semester-controls {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 48px;
+  gap: 4px;
+  width: 100%;
+  padding: 4px;
+  border: 1px solid var(--p-line);
+  border-radius: var(--p-radius);
+  background: var(--p-card);
+}
+.interface-prototype .ap-semester-controls button {
+  display: grid;
+  place-items: center;
+  min-height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--p-accent);
+}
+.interface-prototype .ap-semester-controls button:not(:disabled):hover {
+  background: var(--p-soft);
+  color: var(--p-accent);
+}
+.interface-prototype .ap-semester-controls button:disabled { opacity: .45; cursor: default; }
+.ap-semester-label {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  column-gap: .3em;
+  min-height: 48px;
+  padding-inline: 4px;
+  font-size: 14px;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+.ap-semester-label > span { color: var(--p-muted); }
+.ap-root :is(a, button):focus-visible { outline: 3px solid var(--p-focus); outline-offset: 3px; }
+
+.ap-plan-body { display: flex; flex-direction: column; min-width: 0; }
+.ap-semester-sheet { touch-action: pan-y pinch-zoom; }
+:is(.ap-semester, .ap-statistics) h2 {
+  margin: 0 0 9px;
+  font-size: clamp(19px, 3.4cqi, 23px);
+  line-height: 1.35;
+  font-weight: 740;
+  letter-spacing: -.025em;
+}
+
+/* Keep all three columns at 360px. Let the subject cell wrap around two stable value columns. */
+.ap-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  border: 1px solid var(--p-line);
+  border-radius: 12px;
+  background: var(--p-card);
+}
+.ap-hours-col { width: clamp(50px, 13cqi, 100px); }
+.ap-grade-col { width: clamp(78px, 24cqi, 166px); }
+.ap-table :is(.ap-type-col, .ap-type-cell, .ap-department) { display: none; }
+.ap-table :is(th, td) {
+  padding: 9px clamp(7px, 1.6cqi, 14px);
+  font-size: clamp(13px, 1.9cqi, 14px);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  text-align: start;
+  vertical-align: middle;
+}
+.ap-table thead th { background: var(--p-raised); font-weight: 750; }
+.ap-table thead th:first-child { border-start-start-radius: 11px; }
+.ap-table thead th:last-child { border-start-end-radius: 11px; }
+.ap-table thead th span { color: var(--p-muted); font-size: .91em; font-weight: 650; }
+.ap-table tbody th { font-weight: 700; }
+.ap-table tbody :is(th, td) { border-top: 1px solid var(--p-line); }
+.ap-table tr > :nth-child(n + 2) { border-inline-start: 1px solid var(--p-line); text-align: center; }
+.ap-table .ap-hours-cell { font-variant-numeric: tabular-nums; font-weight: 700; }
+.ap-assessment, .ap-no-grade { color: var(--p-muted); font-weight: 600; }
+.ap-assessment { font-size: .94em; }
+.ap-grade { color: var(--ap-grade-ink, var(--p-text)); font-size: .94em; font-weight: 750; }
+.ap-grade:is([data-mark="5"], [data-pass]) { --ap-grade-ink: var(--p-success); }
+.ap-grade[data-mark="4"] { --ap-grade-ink: oklch(42% .105 255); }
+.ap-grade[data-mark="3"] { --ap-grade-ink: var(--p-warning); }
+.interface-prototype[data-mode="dark"] .ap-grade[data-mark="4"] { --ap-grade-ink: oklch(82% .09 255); }
+.ap-grade-short { display: none; }
+
+.ap-statistics { margin-block-start: 24px; }
+.ap-statistics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  border: 1px solid var(--p-line);
+  border-radius: var(--p-radius);
+  background: var(--p-card);
+}
+.ap-statistics-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  padding: 13px clamp(8px, 2.6cqi, 20px);
+}
+.ap-statistics-grid > div + div { border-inline-start: 1px solid var(--p-line); }
+.ap-statistics-grid dt { color: var(--p-muted); font-size: 12px; font-weight: 650; }
+.ap-statistics-grid dd {
+  order: -1;
+  margin: 0;
+  font-size: clamp(17px, 5cqi, 26px);
+  font-weight: 750;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+.ap-statistics-grid dd span { color: var(--p-muted); font-size: .65em; font-weight: 650; white-space: nowrap; }
+
+.ap-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+@container (max-width: 570px) {
+  .ap-grade[data-mark="3"] .ap-grade-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .ap-grade-short { display: inline; }
+}
+
+/* The mobile table keeps three columns. The desktop table gives status and control their own space. */
+@media (min-width: 1024px) {
+  .ap-heading { margin-block-end: 24px; }
+  .interface-prototype .ap-semester-controls button, .ap-semester-label { min-height: 42px; }
+  .ap-semester .ap-table-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .ap-table :is(.ap-table-note, .ap-assessment) { display: none; }
+  .ap-table .ap-type-col { display: table-column; width: clamp(112px, 17cqi, 180px); }
+  .ap-table .ap-grade-col { width: clamp(176px, 19cqi, 200px); }
+  .ap-table .ap-type-cell { display: table-cell; }
+  .ap-table .ap-department { display: block; color: var(--p-muted); font-size: 12px; font-weight: 600; }
+  .ap-table tr > .ap-grade-cell { text-align: end; }
+  .ap-table tr > :nth-child(n + 2) { border-inline-start: 0; }
+  .ap-table :is(th, td) { padding-inline: clamp(14px, 2cqi, 22px); }
+  .ap-type-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 5px;
+    background: var(--p-raised);
+    color: var(--p-text);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .ap-statistics { order: -1; margin-block: 0 24px; }
+  .ap-statistics-grid { gap: 16px; border: 0; background: transparent; }
+  .ap-statistics-grid > div, .ap-statistics-grid > div + div {
+    border: 1px solid var(--p-line);
+    border-radius: var(--p-radius);
+    background: var(--p-card);
+  }
+}

@@ -1,0 +1,7 @@
+.atlas-autogrow {
+  field-sizing: content;
+  max-height: 18rem;
+  max-height: min(18rem, 40dvh);
+  overflow-y: auto;
+  resize: none;
+}

@@ -1,0 +1,303 @@
+.campus-page {
+  container: campus-page / inline-size;
+  --campus-padding: clamp(1rem, .75rem + 1.25vw, 1.75rem);
+  --campus-gap: clamp(1rem, .75rem + 1vw, 1.5rem);
+  color: var(--p-text);
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.campus-page .campus-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  gap: .5rem;
+  color: var(--p-accent);
+  font-size: .875rem;
+  font-weight: 750;
+}
+
+.campus-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(.75rem, 2vw, 1.125rem);
+  margin: .5rem 0 1.5rem;
+}
+
+.campus-heading-icon {
+  flex: 0 0 48px;
+  display: grid;
+  place-items: center;
+  height: 48px;
+  border-radius: 12px;
+  color: var(--p-accent);
+  background: var(--p-soft);
+}
+
+.campus-heading > div { min-width: 0; }
+.campus-heading h1 {
+  margin-bottom: .45rem;
+  font-size: clamp(1.75rem, 1.35rem + 1.45vw, 2.875rem);
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+
+.campus-heading p {
+  max-width: 60ch;
+  margin: 0;
+  color: var(--p-muted);
+}
+
+/* The main task comes first in one column. At wider content widths, support moves beside it. */
+.campus-columns, .campus-stack, .campus-aside {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: var(--campus-gap);
+}
+
+@container campus-page (min-width: 46rem) {
+  .campus-columns { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); }
+  .campus-heading-icon { flex-basis: 56px; height: 56px; }
+}
+
+.campus-panel, .campus-window {
+  min-width: 0;
+  padding: var(--campus-padding);
+  border: 1px solid var(--p-line);
+  border-radius: 14px;
+  background: var(--p-card);
+}
+
+.campus-page :is(h1, h2)[tabindex]:focus-visible {
+  outline: 2px solid var(--p-focus);
+  outline-offset: 4px;
+}
+
+.campus-page :is(h2, h3) { text-wrap: pretty; }
+.campus-page :is(button, summary, select, label) { scroll-margin-block: 1rem 6.5rem; }
+
+.campus-field {
+  display: block;
+  min-inline-size: 0;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.campus-field :is(legend, h3), label.campus-field > span {
+  padding: 0;
+  font-size: .9375rem;
+  font-weight: 750;
+}
+
+.campus-field select {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  margin-top: .4rem;
+  padding: .55rem .65rem;
+  border: 1px solid var(--p-control);
+  border-radius: 9px;
+  background: var(--p-card);
+  color: var(--p-text);
+  font: inherit;
+}
+
+.campus-dates {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .5rem;
+  margin-top: .4rem;
+}
+
+.campus-page .campus-secondary {
+  border-color: var(--p-control);
+  background: var(--p-card);
+  color: var(--p-text);
+}
+
+.campus-page .campus-secondary:hover { background: var(--p-raised); }
+.campus-page .campus-day {
+  flex-direction: column;
+  gap: .15rem;
+  padding: .45rem .3rem;
+  min-height: 60px;
+}
+
+.campus-day span { color: var(--p-muted); font-size: .8125rem; }
+.campus-day time { font-weight: 750; }
+
+.campus-page .campus-day[aria-pressed="true"] {
+  border-color: var(--p-accent);
+  background: var(--p-soft);
+  color: var(--p-accent);
+  box-shadow: inset 0 0 0 1px var(--p-accent);
+}
+
+.campus-times, .campus-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+
+.campus-times button { min-width: 4.85rem; font-variant-numeric: tabular-nums; }
+.campus-clinician, .campus-help-text, .campus-progress-label { color: var(--p-muted); }
+.campus-clinician { margin: .3rem 0 .6rem; font-size: .875rem; }
+
+.campus-note {
+  padding: .7rem .85rem;
+  border-radius: 9px;
+  background: var(--p-raised);
+  color: var(--p-text);
+}
+
+.campus-confirmed {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  color: var(--p-success);
+  font-weight: 750;
+}
+
+.campus-visit, .campus-info {
+  display: grid;
+  gap: .85rem;
+  margin: 1rem 0;
+}
+
+.campus-info { margin-bottom: 0; }
+.campus-visit dt, .campus-info dt {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  font-size: .9rem;
+  font-weight: 750;
+}
+
+.campus-page :is(dt svg, .campus-window > svg) { color: var(--p-accent); }
+.campus-visit dd, .campus-info dd { margin: .25rem 0 0 1.65rem; color: var(--p-muted); }
+.campus-visit dd { color: var(--p-text); }
+
+.campus-help h2 { margin-bottom: .5rem; }
+.campus-help details { border-bottom: 1px solid var(--p-line); }
+.campus-help summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .65rem;
+  min-height: 48px;
+  padding: .35rem .2rem;
+  cursor: pointer;
+  font-size: .9375rem;
+  font-weight: 750;
+  list-style: none;
+}
+
+.campus-help summary::-webkit-details-marker { display: none; }
+.campus-help summary:hover { color: var(--p-accent); }
+.campus-help summary:focus-visible { outline: 3px solid var(--p-focus); outline-offset: 3px; }
+.campus-help details[open] summary svg { transform: rotate(180deg); }
+.campus-help details p { margin: 0 0 .8rem; color: var(--p-muted); }
+
+.campus-window {
+  display: flex;
+  gap: .75rem;
+  align-items: flex-start;
+  background: var(--p-soft);
+}
+
+.campus-window div { min-width: 0; }
+.campus-window h2 { color: var(--p-accent); font-size: 1rem; }
+.campus-window p:last-child { margin-bottom: 0; }
+.campus-window-date {
+  margin-block: .35rem .2rem;
+  font-size: clamp(1.375rem, 1.1rem + 1.05vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -.025em;
+  line-height: 1.2;
+}
+
+.campus-timeline {
+  counter-reset: campus-step;
+  margin: .85rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.campus-timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  align-items: start;
+  gap: .7rem;
+  padding-bottom: 1.05rem;
+  counter-increment: campus-step;
+}
+
+.campus-timeline li:last-child { padding-bottom: 0; }
+.campus-timeline li::before {
+  display: grid;
+  place-items: center;
+  height: 2rem;
+  border: 1px solid var(--p-line);
+  border-radius: 50%;
+  background: var(--p-card);
+  color: var(--p-accent);
+  font-size: .875rem;
+  font-weight: 800;
+  content: counter(campus-step) / "";
+}
+
+.campus-timeline li:not(:last-child)::after {
+  position: absolute;
+  inset: 2rem auto 0 1rem;
+  width: 1px;
+  background: var(--p-line);
+  content: "";
+}
+
+.campus-timeline h3 { margin-top: .22rem; font-size: 1rem; }
+.campus-timeline p, .campus-help-text {
+  margin: .25rem 0 0;
+  color: var(--p-muted);
+  font-size: .9375rem;
+}
+
+.campus-progress {
+  display: block;
+  width: 100%;
+  height: .5rem;
+  margin-bottom: .75rem;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: var(--p-raised);
+}
+
+.campus-progress::-webkit-progress-bar { background: var(--p-raised); }
+.campus-progress::-webkit-progress-value { background: var(--p-accent); }
+.campus-progress::-moz-progress-bar { background: var(--p-accent); }
+
+.campus-progress-label, .campus-help-text { font-size: .875rem; }
+.campus-checklist { margin: 0 0 .65rem; padding: 0; list-style: none; }
+.campus-checklist li + li { border-top: 1px solid var(--p-line); }
+.campus-checklist label {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  min-height: 48px;
+  margin: 0;
+  padding-block: .35rem;
+  cursor: pointer;
+}
+
+.campus-checklist input {
+  flex: 0 0 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--p-accent);
+}

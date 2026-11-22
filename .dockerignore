@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.env*
+*.tsbuildinfo
+.agents
+documents
+!documents/sources
+!documents/sources/**
+!documents/questions.json
+Codex-local-skills
+
+/tmp
+*.dump
+*.tar.gpg
+.deanery-backup.*

@@ -1,0 +1,138 @@
+.lb-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; }
+.lb-header h1 { margin: 0; font-size: var(--p-heading-size); }
+.lb-tools { display: flex; flex-wrap: wrap; min-width: 0; gap: 8px; }
+.lb-search, .lb-filter select {
+  min-height: 48px;
+  border: 1px solid var(--p-control, var(--p-line));
+  border-radius: var(--p-control-radius);
+  background: var(--p-card);
+  color: var(--p-text);
+}
+.lb-search { display: flex; align-items: center; flex: 1 1 200px; gap: 8px; padding-inline: 12px; color: var(--p-muted); }
+.lb-search:focus-within { outline: 2px solid var(--p-focus); outline-offset: 2px; }
+.interface-prototype .lb-search input {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--p-text);
+  font: inherit;
+  font-size: 16px;
+  outline: none;
+}
+.lb-search input::placeholder { color: var(--p-muted); opacity: 1; }
+.lb-filter { flex: 1 1 160px; min-width: 0; }
+.lb-filter select { width: 100%; padding: 6px 28px 6px 10px; font: inherit; font-size: 16px; }
+.lb-demo { margin: 12px 0 18px; color: var(--p-muted); font-size: 13px; }
+.lb-books {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.lb-book, .lb-empty, .lb-guide {
+  padding: 18px;
+  border: 1px solid var(--p-line);
+  border-radius: var(--p-radius);
+  background: var(--p-card);
+}
+.lb-book { display: flex; min-width: 0; flex-direction: column; }
+.lb-book h2 { margin-top: 10px; font-size: 19px; overflow-wrap: anywhere; }
+.lb-availability { display: flex; min-height: 27px; flex-wrap: wrap; align-items: start; gap: 4px; }
+.lb-availability span {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 6px;
+  border-radius: 5px;
+  background: var(--p-raised);
+  color: var(--p-muted);
+  font-size: 12px;
+  font-weight: 740;
+}
+.lb-availability span[data-available] { background: var(--p-success-surface); color: var(--p-success); }
+.lb-availability span[data-subject] { background: var(--p-soft); color: var(--p-accent); }
+.lb-byline { color: var(--p-muted); font-size: 13px; }
+.lb-summary { flex: 1; margin-bottom: 16px; font-size: 14px; line-height: 1.5; }
+.lb-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding-top: 8px; border-top: 1px solid var(--p-line); }
+.interface-prototype .lb-actions :is(button, .lb-download) { min-height: 48px; padding: 5px 9px; font-size: 13px; }
+.lb-download { display: inline-flex; align-items: center; gap: 6px; border-radius: var(--p-control-radius); font-weight: 750; }
+.interface-prototype .lb-download:hover { background: var(--p-hover); }
+.interface-prototype .lb-actions .lb-reserve { color: var(--p-accent); background: transparent; }
+.interface-prototype .lb-actions .lb-reserve:hover { background: var(--p-soft); filter: none; }
+.lb-guide { max-width: 66ch; }
+.lb-guide a { display: inline-flex; align-items: center; min-height: 48px; gap: 8px; font-weight: 750; }
+
+.lb-sections {
+  display: flex;
+  gap: 6px;
+  margin-block: 14px 16px;
+  border-block-end: 1px solid var(--p-line);
+}
+.interface-prototype .lb-sections a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 12px;
+  border-block-end: 2px solid transparent;
+  color: var(--p-muted);
+  font-size: 14px;
+  font-weight: 750;
+}
+.interface-prototype .lb-sections a[aria-current] { border-color: var(--p-accent); color: var(--p-accent); }
+.interface-prototype .lb-sections a:hover { background: var(--p-hover); text-decoration: none; }
+.lb-reader-card, .lb-circulation > section {
+  min-width: 0;
+  border: 1px solid var(--p-line);
+  border-radius: var(--p-radius);
+  background: var(--p-card);
+}
+.lb-reader-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  padding: 14px;
+  background: var(--p-soft);
+}
+.lb-reader-card h2, .lb-circulation h2 { font-size: 17px; }
+.lb-reader-card p { margin: 4px 0 0; color: var(--p-muted); font-size: 13px; }
+.interface-prototype .lb-reader-button { min-height: 48px; }
+.lb-circulation { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; gap: 12px; }
+.lb-circulation h2 { display: flex; align-items: center; gap: 8px; padding: 12px 14px; }
+.lb-circulation h2 svg { color: var(--p-accent); }
+.lb-circulation h2 span { margin-inline-start: auto; color: var(--p-muted); font-size: 13px; }
+.lb-circulation ul { margin: 0; padding: 0; list-style: none; }
+.lb-circulation li, .lb-circulation > section > p { padding: 12px 14px; border-block-start: 1px solid var(--p-line); }
+.lb-circulation li > p, .lb-circulation > section > p { margin: 0; font-size: 13px; }
+.lb-circulation li p + p { margin-block-start: 5px; }
+.lb-record-title { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 5px 10px; margin-block-end: 4px; }
+.lb-record-title h3 { font-size: 15px; overflow-wrap: anywhere; }
+.lb-record-status { padding: 2px 6px; border-radius: 5px; background: var(--p-soft); color: var(--p-accent); font-size: 12px; font-weight: 750; }
+.lb-record-status[data-state=ready] { color: var(--p-success); background: var(--p-success-surface); }
+.lb-record-status[data-state=overdue] { color: var(--p-warning); background: color-mix(in srgb, var(--p-warning) 12%, var(--p-card)); }
+.interface-prototype .lb-circulation .lb-reserve { min-height: 48px; padding: 0; background: transparent; color: var(--p-accent); font-size: 13px; }
+.interface-prototype .lb-circulation .lb-reserve:hover { filter: none; text-decoration: underline; }
+
+@media (max-width: 560px) { .interface-prototype .lb-reader-button { width: 100%; } }
+@media (min-width: 768px) { .lb-circulation { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+@media (min-width: 768px) {
+  .lb-books { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) {
+  .lb-tools { flex: 0 1 465px; }
+}
+@media (min-width: 1280px) {
+  .lb-books { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.lb-reader-card { margin-block-end: 16px; }
+.lb-circulation .lb-download { min-height: 48px; margin-inline-end: 12px; overflow-wrap: anywhere; }
+.lb-circulation h2 { margin: 0; }
+.lb-circulation p { line-height: 1.6; }
